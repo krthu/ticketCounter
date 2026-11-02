@@ -33,6 +33,15 @@ undoButton.addEventListener("click", undoDraw);
 
 render();
 
+// Skipped on localhost so local testing always shows the latest files.
+if ("serviceWorker" in navigator && location.hostname !== "localhost") {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {
+      // Only offline support is lost; the app itself still works.
+    });
+  });
+}
+
 function startRound(event) {
   event.preventDefault();
   const numberOfTickets = Number(countInput.value);
