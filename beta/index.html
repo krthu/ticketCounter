@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0E0F13">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Lottdragning">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon-180.png">
+    <link rel="preload" href="fonts/oswald-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" type="module"></script>
+    <title>Lottdragning</title>
+</head>
+<body>
+    <main class="app">
+        <header class="topbar">
+            <h1 class="brand">Lottdragning</h1>
+            <button id="newRound" class="btn btn-ghost" type="button" hidden>Ny omgång</button>
+        </header>
+
+        <section class="setup">
+            <form id="setupForm" class="setup-form">
+                <label for="numberOfTickets" class="setup-title">Hur många lotter?</label>
+                <input id="numberOfTickets" type="number" inputmode="numeric" min="1" max="10000" step="1" required placeholder="100">
+                <div class="presets">
+                    <button type="button" class="btn btn-ghost" data-preset="25">25</button>
+                    <button type="button" class="btn btn-ghost" data-preset="50">50</button>
+                    <button type="button" class="btn btn-ghost" data-preset="100">100</button>
+                    <button type="button" class="btn btn-ghost" data-preset="200">200</button>
+                </div>
+                <button type="submit" class="btn btn-primary">Starta</button>
+            </form>
+        </section>
+
+        <section class="draw" hidden>
+            <div class="winner">
+                <span class="eyebrow winnerLabel">Vinnande lott</span>
+                <output class="winningNumber" aria-live="polite">–</output>
+                <span class="remaining"><b class="ticketsLeft"></b> av <span class="ticketsTotal"></span> lotter kvar</span>
+            </div>
+
+            <div class="bottom">
+                <div class="history">
+                    <h2 class="eyebrow">Tidigare dragna · senaste först</h2>
+                    <ul class="numberDrawn"></ul>
+                </div>
+                <div class="controls">
+                    <button id="undo" class="btn btn-round" type="button" aria-label="Ångra senaste dragning">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+                    </button>
+                    <button id="drawNumber" class="btn btn-primary" type="button">Dra lott</button>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
