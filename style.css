@@ -150,6 +150,10 @@ input:focus-visible {
     min-height: 0;
     display: flex;
     overflow-y: auto;
+    /* Room for the focus outline, which the scroll area would otherwise cut off.
+       The negative margin keeps the form lined up with the title. */
+    margin: -0.5rem;
+    padding: 0.5rem;
 }
 
 /* margin: auto centers the form but still lets it scroll when the screen is too short */
