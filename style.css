@@ -53,10 +53,10 @@ body {
     height: 100dvh;
     overflow: hidden;
     padding:
-        max(1rem, env(safe-area-inset-top))
-        max(1.25rem, env(safe-area-inset-right))
-        max(1.25rem, env(safe-area-inset-bottom))
-        max(1.25rem, env(safe-area-inset-left));
+        calc(1.25rem + env(safe-area-inset-top))
+        calc(1.5rem + env(safe-area-inset-right))
+        calc(1.5rem + env(safe-area-inset-bottom))
+        calc(1.5rem + env(safe-area-inset-left));
 }
 
 /* Top bar */
@@ -220,6 +220,7 @@ input[type=number] {
 }
 
 .winner {
+    container-type: size;
     flex: 1;
     min-height: 0;
     display: flex;
@@ -241,6 +242,8 @@ input[type=number] {
     /* Shrinks as the number gets more digits so 4-digit tickets still fit. */
     font-size: min(calc(150vw / var(--digits)), 40vh, 26rem);
     font-size: min(calc(150vw / var(--digits)), 40dvh, 26rem);
+    /* Fit the space actually left for the number; 4rem leaves room for the two text lines */
+    font-size: min(calc(180cqw / var(--digits)), calc((100cqh - 4rem) / 1.05), 34rem);
 }
 
 /* Before the first draw: an outlined "?" so it reads as waiting, not broken */
@@ -328,10 +331,10 @@ input[type=number] {
 @media (min-width: 600px) and (min-height: 600px) {
     .app {
         padding:
-            max(2rem, env(safe-area-inset-top))
-            max(3rem, env(safe-area-inset-right))
-            max(2rem, env(safe-area-inset-bottom))
-            max(3rem, env(safe-area-inset-left));
+            calc(2rem + env(safe-area-inset-top))
+            calc(3rem + env(safe-area-inset-right))
+            calc(2rem + env(safe-area-inset-bottom))
+            calc(3rem + env(safe-area-inset-left));
     }
 
     .brand {
@@ -350,11 +353,6 @@ input[type=number] {
 
     .remaining {
         font-size: 1.125rem;
-    }
-
-    .winningNumber {
-        font-size: min(calc(150vw / var(--digits)), 45vh, 34rem);
-        font-size: min(calc(150vw / var(--digits)), 45dvh, 34rem);
     }
 
     .numberDrawn {
@@ -411,6 +409,28 @@ input[type=number] {
     }
 }
 
+/* Short phone screens: one history row and tighter spacing leave room for the number */
+
+@media (orientation: portrait) and (max-height: 600px) {
+    .app,
+    .draw {
+        gap: 0.75rem;
+    }
+
+    .bottom {
+        gap: 0.75rem;
+    }
+
+    .history {
+        gap: 0.5rem;
+        padding-top: 0.75rem;
+    }
+
+    .numberDrawn {
+        height: 2.75rem;
+    }
+}
+
 /* Phone in landscape: number on the left, history and controls on the right */
 
 @media (orientation: landscape) and (max-height: 500px) {
@@ -421,11 +441,6 @@ input[type=number] {
     .draw {
         flex-direction: row;
         gap: 2rem;
-    }
-
-    .winningNumber {
-        font-size: min(calc(85vw / var(--digits)), 55vh);
-        font-size: min(calc(85vw / var(--digits)), 55dvh);
     }
 
     .bottom {

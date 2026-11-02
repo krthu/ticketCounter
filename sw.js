@@ -1,6 +1,6 @@
 // Stores the app on the device so it works offline.
 // Change VERSION on every release, otherwise phones keep the old files.
-const VERSION = "1";
+const VERSION = "2";
 
 // Caches are shared across the whole github.io origin, so names include the
 // scope. That way /beta/ and the live app never touch each other's files.
